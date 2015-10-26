@@ -1,6 +1,33 @@
 $(document).ready(function() {
+    $("#tweet-controls").css("display", "none");
+    
+    $(".tweet").on("click", function() {
+        $(".stats").fadeIn("slow", function() {
+            $(".stats").css("display", "inherit");
+        })
+        $(".reply").fadeIn("slow", function () {
+            $(".reply").css("display", "inherit");
+        })
+    });
+    
+    $(".tweet").on("focusout", function() {
+        $(".stats").css("display", "none");
+        $(".reply").css("display", "none");
+    });
+    
+    $(".tweet").hover(
+        
+        function() {
+        $(".tweet-actions li").css("display", "inline-block");
+    },
+        
+    function() {
+        $(".tweet-actions li").css("display", "none");
+    }
+    );
     
     
+                      
     $(".tweet-compose").on("click", function() {
 	
         $(this).css("height", "5em");
@@ -22,8 +49,13 @@ $(document).ready(function() {
         if(keyCount > 0) {
             $("#tweet-controls").css("display", "inherit");
         }
-    })
+    });
 });
+    
+    $(".tweet-compose").on("focusout", function() {
+        $("#tweet-controls").css("display", "none");
+        $(this).css("height", "2.5em");
+    });
         
     $("#tweet-submit").on("click", function() {
         var thisTweet = $(".tweet-compose").val();
@@ -61,14 +93,17 @@ $(document).ready(function() {
 							'</div>' +
 						'</div>' +
 					'</div>'
-    );
+        );
         $(".tweet-compose").val("");
         $("#char-count").html(140);
     });
-            
-    $("").hoover(function() {
-        $(".tweet-actions").css("display", "inherit");
-    });
+    
+    $("tweet-actions").css("text-align", "left");
+    
+//    $(".tweet-actions").hoover(function() {
+//    $(this).fadeIn(50);
+//    $(this).fadeOut(50);
+//    });
     
         
         
